@@ -8,12 +8,10 @@ function hellYeah() {
     'Hades', 'abyss', 'blazes', 'perdition', 'underworld',
     'bottomless pit', 'everlasting fire', 'fire and brimstone',
     'hell-fire', 'infernal regions', 'lower world', 'nether world',
-    'place of torment'
-    ],
+    'place of torment'],
     yeah: ['yeah', 'yes', 'affirmative', 'amen', 'true', 'yep', 'okay', 'fine'],
     brother: ['brother', 'twin', 'kin', 'kinsperson', 'relation', 'sibling',
-    'sister', 'bro', 'sis'
-    ],
+    'sister', 'bro', 'sis'],
   };
 
   const phrase = ['hell', 'yeah', 'brother'];
@@ -22,14 +20,17 @@ function hellYeah() {
   return thesaurize;
 }
 
-chrome.contextMenus.create({
-  id: 'ch.timkovi.hyb',
-  title: 'Hell Yeah Brother',
-  contexts: ['editable']
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'ch.timkovi.hyb',
+    title: 'Hell Yeah Brother',
+    contexts: ['editable'],
+    documentUrlPatterns: ['*://*/*']
+  });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  chrome.tabs.executeScript(tab.id, {
+  chrome.tabs.executeScript({
     code: `document.execCommand('insertText', false, ${JSON.stringify(hellYeah())})`,
   });
 });
