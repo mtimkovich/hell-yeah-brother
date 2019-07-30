@@ -15,7 +15,7 @@ function hellYeah() {
   };
 
   const phrase = ['hell', 'yeah', 'brother'];
-  const thesaurize = phrase.map((word) => sample(synonyms[word])).join(' ');
+  const thesaurize = phrase.map(word => sample(synonyms[word])).join(' ');
 
   return thesaurize;
 }
